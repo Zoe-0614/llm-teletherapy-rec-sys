@@ -5,6 +5,7 @@ import useIsTab from "../../hooks/useIsTab";
 import { XIcon } from "@heroicons/react/outline";
 import { ChatPanel } from "./ChatPanel";
 import { ParticipantPanel } from "./ParticipantPanel";
+import { RecSysPanel } from "./RecSysPanel"
 import { Dialog, Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import { useMeetingAppContext } from "../../MeetingAppContextDef";
@@ -74,6 +75,8 @@ const SideBarTabView = ({
               <ParticipantPanel panelHeight={panelHeight} />
             ) : sideBarMode === "CHAT" ? (
               <ChatPanel panelHeight={panelHeight} />
+            ) : sideBarMode === "LLM" ? (
+              <RecSysPanel panelHeight={panelHeight} />
             ) : null}
           </>
         </div>
@@ -83,7 +86,7 @@ const SideBarTabView = ({
 };
 
 export function SidebarConatiner({ height, sideBarContainerWidth }) {
-  const { raisedHandsParticipants, sideBarMode, setSideBarMode } =
+  const {sideBarMode, setSideBarMode } =
     useMeetingAppContext();
   const isMobile = useIsMobile();
   const isTab = useIsTab();
@@ -155,7 +158,6 @@ export function SidebarConatiner({ height, sideBarContainerWidth }) {
                     height={"100%"}
                     sideBarContainerWidth={"100%"}
                     panelHeight={height}
-                    raisedHandsParticipants={raisedHandsParticipants}
                     panelHeaderHeight={panelHeaderHeight}
                     panelHeaderPadding={panelHeaderPadding}
                     panelPadding={panelPadding}
@@ -172,7 +174,6 @@ export function SidebarConatiner({ height, sideBarContainerWidth }) {
         height={paddedHeight}
         sideBarContainerWidth={sideBarContainerWidth}
         panelHeight={paddedHeight - panelHeaderHeight - panelHeaderPadding}
-        raisedHandsParticipants={raisedHandsParticipants}
         panelHeaderHeight={panelHeaderHeight}
         panelHeaderPadding={panelHeaderPadding}
         panelPadding={panelPadding}

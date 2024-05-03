@@ -23,7 +23,7 @@ export function MeetingContainer({
     setSelectedSpeaker,
   } = useMeetingAppContext()
 
-  const { useRaisedHandParticipants } = useMeetingAppContext();
+  // const { useRaisedHandParticipants } = useMeetingAppContext();
   const bottomBarHeight = 60;
 
   const [containerHeight, setContainerHeight] = useState(0);
@@ -71,7 +71,7 @@ export function MeetingContainer({
     });
   }, [containerRef]);
 
-  const { participantRaisedHand } = useRaisedHandParticipants();
+  // const { participantRaisedHand } = useRaisedHandParticipants();
 
   const _handleMeetingLeft = () => {
     setIsMeetingLeft(true);
@@ -170,32 +170,32 @@ export function MeetingContainer({
     mMeetingRef.current = mMeeting;
   }, [mMeeting]);
 
-  usePubSub("RAISE_HAND", {
-    onMessageReceived: (data) => {
-      const localParticipantId = mMeeting?.localParticipant?.id;
+  // usePubSub("RAISE_HAND", {
+  //   onMessageReceived: (data) => {
+  //     const localParticipantId = mMeeting?.localParticipant?.id;
 
-      const { senderId, senderName } = data;
+  //     const { senderId, senderName } = data;
 
-      const isLocal = senderId === localParticipantId;
+  //     const isLocal = senderId === localParticipantId;
 
-      new Audio(
-        `https://static.videosdk.live/prebuilt/notification.mp3`
-      ).play();
+  //     new Audio(
+  //       `https://static.videosdk.live/prebuilt/notification.mp3`
+  //     ).play();
 
-      toast(`${isLocal ? "You" : nameTructed(senderName, 15)} raised hand 🖐🏼`, {
-        position: "bottom-left",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeButton: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+  //     toast(`${isLocal ? "You" : nameTructed(senderName, 15)} raised hand 🖐🏼`, {
+  //       position: "bottom-left",
+  //       autoClose: 4000,
+  //       hideProgressBar: true,
+  //       closeButton: false,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
 
-      participantRaisedHand(senderId);
-    },
-  });
+  //     participantRaisedHand(senderId);
+  //   },
+  // });
 
   usePubSub("CHAT", {
     onMessageReceived: (data) => {

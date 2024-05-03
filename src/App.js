@@ -42,7 +42,8 @@ function App() {
               name: participantName ? participantName : "TestUser",
               multiStream: true,
               customCameraVideoTrack: customVideoStream,
-              customMicrophoneAudioTrack: customAudioStream
+              customMicrophoneAudioTrack: customAudioStream,
+              metaData: { isHost: true }
             }}
             token={token}
             reinitialiseMeetingOnConfigChange={true}
